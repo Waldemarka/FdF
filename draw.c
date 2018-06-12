@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/FdF.h"
+#include "includes/fdf.h"
 
 void	changestep(t_data *data)
 {
@@ -20,61 +20,83 @@ void	changestep(t_data *data)
 		data->step_for_y = 20;
 		data->width_for_x = 8;
 	}
-	else if (data->array_width  < 100  && data->array_width >= 30)
+	else if (data->array_width < 100 && data->array_width >= 30)
 	{
 		data->step_for_x = 10;
 		data->step_for_y = 10;
 		data->width_for_x = 4;
 	}
-	else if (data->array_width >= 100)
+	else if (data->array_width >= 100 && data->array_width <= 200)
 	{
 		data->step_for_x = 5;
 		data->step_for_y = 4;
 		data->width_for_x = 2;
 	}
-	data->start_x = (WIDTH / 2) - ((data->step_for_x * data->array_width) / 2) + 100;
- 	data->start_y = (HEIGHT / 2) - ((data->step_for_y * data->array_height) / 2);
- 	data->height_for_y = 2;
+	else if (data->array_width > 200)
+	{
+		data->step_for_x = 3;
+		data->step_for_y = 3;
+		data->width_for_x = 1;
+	}
 }
 
 void	transform(t_data *data, int x, int y)
 {
 	data->x0 = data->start_x + (x * data->step_for_x) - (y * data->width_for_x);
-	data->y0 = data->start_y + (y * data->step_for_y) - (data->array[y][x] * data->height_for_y);
-	
-	
-		if (x != data->array_width - 1)
-		{
-			data->x1 = data->start_x + ((x + 1) * data->step_for_x) - (y * data->width_for_x);
-			data->y1 = data->start_y + (y * data->step_for_y) - (data->array[y][x + 1] * data->height_for_y);
-			bresenham_line(data);
-		}
-		if (y != data->array_height - 1 )
-		{
-			data->x1 = data->start_x + (x * data->step_for_x)- ((y + 1) * data->width_for_x);
-			data->y1 = data->start_y + ((y + 1) * data->step_for_y) - (data->array[y + 1][x] * data->height_for_y);
-			bresenham_line(data);
-		}
+	data->y0 = data->start_y + (y * data->step_for_y) -
+	(data->array[y][x] * data->height_for_y);
+	if (x != data->array_width - 1)
+	{
+		data->x1 = data->start_x + ((x + 1) * data->step_for_x) -
+		(y * data->width_for_x);
+		data->y1 = data->start_y + (y * data->step_for_y) -
+		(data->array[y][x + 1] * data->height_for_y);
+		bresenham_line(data);
+	}
+	if (y != data->array_height - 1)
+	{
+		data->x1 = data->start_x + (x * data->step_for_x) -
+		((y + 1) * data->width_for_x);
+		data->y1 = data->start_y + ((y + 1) * data->step_for_y) -
+		(data->array[y + 1][x] * data->height_for_y);
+		bresenham_line(data);
+	}
 }
 
-void	draw_all(t_data * data)
+void	angle(t_data *data)
+{
+	if (data->forangle == 1)
+	{
+		data->width_for_x = 0 - data->width_for_x;
+		data->start_x = data->start_x - 100;
+	}
+}
+
+void	draw_all(t_data *data)
 {
 	int x;
 	int y;
 
-	y = 0;
-	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, data->name);
+	y = -1;
+	tips(data);
 	changestep(data);
-	while (y != data->array_height )
+	angle(data);
+	data->start_x = (WIDTH / 2) - ((data->step_for_x * data->array_width)
+		/ 2) + 100;
+	data->start_y = (HEIGHT / 2) - ((data->step_for_y * data->array_height)
+		/ 2);
+	data->height_for_y = 2;
+	while (++y != data->array_height)
 	{
 		x = 0;
-		while (x != data->array_width )
+		while (x != data->array_width)
 		{
-			data->color = data->array_of_color[y][x];
+			if (data->ar_col == 0)
+				data->color = data->array_of_color[y][x];
+			else
+				data->color = data->ar_col;
 			transform(data, x, y);
 			x++;
 		}
-		y++;
 	}
 }

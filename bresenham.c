@@ -10,18 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/FdF.h"
+#include "includes/fdf.h"
 
 void	for_dx(t_data *data)
 {
 	int error;
-	int q; 
+	int q;
 	int x;
 	int y;
 
 	error = (data->deltay << 1) - data->deltax;
 	x = data->x0 + data->x_step;
-	y = data->y0;;
+	y = data->y0;
 	q = 1;
 	mlx_pixel_put(data->mlx, data->win, data->x0, data->y0, data->color);
 	while (q <= data->deltax)
@@ -42,13 +42,13 @@ void	for_dx(t_data *data)
 void	for_dy(t_data *data)
 {
 	int error;
-	int q; 
+	int q;
 	int x;
 	int y;
 
 	error = (data->deltax << 1) - data->deltay;
 	y = data->y0 + data->y_step;
-	x = data->x0;;
+	x = data->x0;
 	q = 1;
 	mlx_pixel_put(data->mlx, data->win, data->x0, data->y0, data->color);
 	while (q <= data->deltay)
@@ -66,7 +66,7 @@ void	for_dy(t_data *data)
 	}
 }
 
-void		bresenham_line(t_data *data)
+void	bresenham_line(t_data *data)
 {
 	data->deltax = abs(data->x1 - data->x0);
 	data->deltay = abs(data->y1 - data->y0);

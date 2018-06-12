@@ -17,7 +17,7 @@ CC = gcc
 FLAG = -Wall -Werror -Wextra
 
 SRC = fdf.c other.c bresenham.c draw.c \
-	get_next_line.c itoa_base.c
+	get_next_line.c itoa_base.c forkey.c 
 
 INCLUDE = ./includes
 

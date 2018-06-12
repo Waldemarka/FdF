@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/FdF.h"
+#include "includes/fdf.h"
 
 void	ft_error(int i)
 {
@@ -20,12 +20,12 @@ void	ft_error(int i)
 		ft_putstr("BAD SIZE\n");
 	else if (i == 3)
 		ft_putstr("2 OR NORE ARG..(OR BAD NAME\n");
-	else 
+	else
 		write(1, "error\n", 6);
 	exit(0);
 }
 
-int 	len(char **str)
+int		len(char **str)
 {
 	int q;
 
@@ -35,7 +35,7 @@ int 	len(char **str)
 	return (q);
 }
 
-int 	len_int(char **str)
+int		len_int(char **str)
 {
 	int q;
 	int count;
@@ -56,7 +56,7 @@ int 	len_int(char **str)
 	return (count);
 }
 
-int 	made_atoi_base(t_data *data, char *str, int q, int j)
+int		made_atoi_base(t_data *data, char *str, int q, int j)
 {
 	int count;
 

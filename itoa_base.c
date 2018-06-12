@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/FdF.h"
+#include "includes/fdf.h"
 
 static int	i_will_power(int nb, int power)
 {
