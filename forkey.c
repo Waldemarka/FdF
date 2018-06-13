@@ -51,9 +51,9 @@ int		hook_keydown(int key, t_data *data)
 void	tips(t_data *data)
 {
 	mlx_string_put(data->mlx, data->win, 20, 10, 0xE5AA70,
-		"COLOUR: 1 || 2 || 3");
+		"COLOR: 1 || 2 || 3");
 	mlx_string_put(data->mlx, data->win, 20, 30, 0xE5AA70,
 		"VIEWING ANGLE: left || right");
 	mlx_string_put(data->mlx, data->win, 20, 50, 0xE5AA70,
-		"RESET_ALL: space");
+		"RESET_COLOR: space");
 }

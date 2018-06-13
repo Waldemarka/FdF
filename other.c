@@ -6,7 +6,7 @@
 /*   By: vomelchu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 15:21:29 by vomelchu          #+#    #+#             */
-/*   Updated: 2018/06/08 15:21:32 by vomelchu         ###   ########.fr       */
+/*   Updated: 2018/06/13 16:15:46 by vomelchu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ void	ft_error(int i)
 	if (i == 1)
 		ft_putstr("BAD MALLOC\n");
 	else if (i == 2)
-		ft_putstr("BAD SIZE\n");
+		ft_putstr("BAD MAP\n");
 	else if (i == 3)
-		ft_putstr("2 OR NORE ARG..(OR BAD NAME\n");
+		ft_putstr("MORE THEN 2 ARGV (OR BAD NAME)\n");
+	else if (i == 4)
+		ft_putstr("IT IS FOLDER\n");
 	else
 		write(1, "error\n", 6);
 	exit(0);
